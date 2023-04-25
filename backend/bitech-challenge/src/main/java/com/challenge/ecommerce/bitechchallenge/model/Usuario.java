@@ -103,6 +103,8 @@ public class Usuario {
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
 	}
+	
+	
 
 	@Override
 	public String toString() {
