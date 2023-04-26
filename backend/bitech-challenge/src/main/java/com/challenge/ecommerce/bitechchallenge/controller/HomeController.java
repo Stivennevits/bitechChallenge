@@ -1,6 +1,7 @@
 package com.challenge.ecommerce.bitechchallenge.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,6 +79,32 @@ public class HomeController {
 		orden.setTotal(sumaTotal);
 		model.addAttribute("cart", detalles);
 		model.addAttribute("orden", orden);
+		
+		
+		return "usuario/carrito";
+	}
+	
+	@GetMapping("/delete/cart/{id}")
+	public String deleteProductoCart(@PathVariable Integer id, Model model) {
+		
+		List<DetalleOrden> ordenesNueva = new ArrayList<DetalleOrden>();
+		
+		for(DetalleOrden detalleOrden: detalles) {
+			if (detalleOrden.getProducto().getId()!=id) {
+				ordenesNueva.add(detalleOrden);
+			}
+		}
+		
+		detalles = ordenesNueva;
+		
+		double sumaTotal = 0;
+		
+		sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
+		
+		orden.setTotal(sumaTotal);
+		model.addAttribute("cart", detalles);
+		model.addAttribute("orden", orden);
+		
 		
 		
 		return "usuario/carrito";
