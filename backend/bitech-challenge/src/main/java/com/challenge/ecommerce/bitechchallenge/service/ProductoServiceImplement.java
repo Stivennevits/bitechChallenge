@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.challenge.ecommerce.bitechchallenge.model.Producto;
-import com.challenge.ecommerce.bitechchallenge.repository.ProductoRepository;
+import com.challenge.ecommerce.bitechchallenge.repository.IProductoRepository;
 
 @Service
 public class ProductoServiceImplement implements ProductoService {
 
 	@Autowired
-	private ProductoRepository productoRepository;
+	private IProductoRepository productoRepository;
 	
 	@Override
 	public Producto save(Producto producto) {
