@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.challenge.ecommerce.bitechchallenge.model.DetalleOrden;
 import com.challenge.ecommerce.bitechchallenge.model.Orden;
 import com.challenge.ecommerce.bitechchallenge.model.Producto;
+import com.challenge.ecommerce.bitechchallenge.model.Usuario;
+import com.challenge.ecommerce.bitechchallenge.service.IUsuarioService;
 import com.challenge.ecommerce.bitechchallenge.service.ProductoService;
 
 @Controller
@@ -29,6 +31,9 @@ public class HomeController {
 	
 	@Autowired
 	private ProductoService productoService;
+	
+	@Autowired
+	private IUsuarioService usuarioService;
 	
 	//almacena detalle de orden
 	List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
@@ -130,7 +135,14 @@ public class HomeController {
 	
 	
 	@GetMapping("/order")
-	public String order() {
+	public String order(Model model) {
+		
+		Usuario usuario = usuarioService.findById(1).get();
+		
+		model.addAttribute("cart", detalles);
+		model.addAttribute("orden", orden);
+		model.addAttribute("usuario", usuario);
+		
 		return "usuario/resumenorden";
 	}
 	
