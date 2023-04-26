@@ -35,6 +35,6 @@
 
 ## Java 11.0.17
 ## Spring Boot (v3.0.6)
-## Mysql 
+## Mysql (user: root, password: root)
 ## Bootstrap
 ## thymeleaf
